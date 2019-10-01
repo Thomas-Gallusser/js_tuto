@@ -80,6 +80,17 @@ function verifCollision(premier_objet,deplacement_en_x, deplacement_en_y, deuxie
   return false; // pas de collision
 }
 
+// Cette fonction vérifie les déplacements après, donc trop tard pour vérifier un mur, peut être utilisé pour un bonus par exemple:
+// function verifCollision(premier_objet, deuxieme_objet) {
+//   if (premier_objet.offsetLeft < deuxieme_objet.offsetLeft + deuxieme_objet.offsetWidth &&
+//      premier_objet.offsetLeft + premier_objet.offsetWidth > deuxieme_objet.offsetLeft &&
+//      premier_objet.offsetTop < deuxieme_objet.offsetTop + deuxieme_objet.offsetHeight &&
+//      premier_objet.offsetHeight + premier_objet.offsetTop > deuxieme_objet.offsetTop) {
+//        return true; // collision
+//   }
+//   return false; // pas de collision
+// }
+
 // Pour aller plus loin sur la collision en français lignes par lignes le if:
 
 // Si le bord gauche du premier_objet est inférieur au bord droite du deuxieme_objet ET SI
@@ -95,8 +106,12 @@ function verifCollision(premier_objet,deplacement_en_x, deplacement_en_y, deuxie
 // |player|
 //     |mur|
 
-// Si on ne regarde pas la hauteur
-// le bord gauche du joueur est inférieur au bord droit du mur ET
-// le bord droit du joueur est supérieur au bord gauche du mur
+// le bord gauche du joueur est inférieur au bord droit du mur (vrais) ET
+// le bord droit du joueur est supérieur au bord gauche du mur (vrais)
 // Donc on est dedans si on regarde juste droite et gauche
-// on ne le serait pas si on regarde la hauteur
+
+
+// Maintenant si on regarde la hauteur:
+// Le bord haut du joueur est inférieur au bord bas du mur (faux) ET
+// Le bord bas du joueur est supérieur au bord haut du mur (vrais)
+// En regardant la hauteur, on sait que le joueur n'est pas sur le mur
